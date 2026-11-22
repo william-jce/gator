@@ -23,7 +23,7 @@ func main() {
 	}
 
 	dbQueries := database.New(db)
-	appState := state{db: dbQueries, cfg: &cfg}
+	appState := state{db: dbQueries, sqlDB: db, cfg: &cfg}
 
 	appCommands := commands{CommandMap: make(map[string]func(*state, command) error)}
 
