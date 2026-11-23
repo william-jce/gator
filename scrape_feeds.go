@@ -31,8 +31,7 @@ func scrapeFeeds(s *state) error {
 	for _, feedItem := range feed.Channel.Item {
 		description := sql.NullString{String: feedItem.Description, Valid: feedItem.Description != ""}
 		var publishedAt sql.NullTime
-		pubDate, err := time.Parse(time.RFC1123Z, feedItem.PubDate)
-		if err == nil {
+		if pubDate, ok := parsePubDate(feedItem.PubDate); ok {
 			publishedAt = sql.NullTime{Time: pubDate, Valid: true}
 		}
 		_, err = s.db.CreatePost(context.Background(), database.CreatePostParams{
