@@ -5,7 +5,6 @@ import (
 	"errors"
 	"fmt"
 	"log"
-	"os"
 	"time"
 
 	"github.com/google/uuid"
@@ -50,13 +49,12 @@ func handlerLogin(s *state, cmd command) error {
 	userName := cmd.Args[0]
 	_, err := s.db.GetUser(context.Background(), userName)
 	if err != nil {
-		fmt.Println("user doesn't exist")
-		os.Exit(1)
+		return fmt.Errorf("couldn't find user: %w", err)
 	}
 
 	err = s.cfg.SetUser(userName)
 	if err != nil {
-		return err
+		return fmt.Errorf("couldn't set current user: %w", err)
 	}
 
 	fmt.Printf("User has been set to %s\n", userName)
