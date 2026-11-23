@@ -25,7 +25,7 @@ func scrapeFeeds(s *state) error {
 
 	feed, err := fetchFeed(context.Background(), feedToFetch.Url)
 	if err != nil {
-		return fmt.Errorf("fetching feed: %w", err)
+		return fmt.Errorf("fetching feed from %s: %w", feedToFetch.Url, err)
 	}
 
 	for _, feedItem := range feed.Channel.Item {
