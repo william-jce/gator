@@ -36,6 +36,17 @@ In the JSON file, set your postgres database URL: `{"db_url":"postgres://..."}`
 - Start the aggregator: `gator agg <time_between_requests>` (example: `gator agg 1m`)
 This runs the aggregator continuously until cancelled with ctrl+c.
 
+## Bookmarks
+
+Posts in `browse` are shown with a short ID, e.g. `[3f9a2c1b] Post title`.
+Use that ID (or any unique prefix of it) to bookmark posts:
+
+- Bookmark a post: `gator bookmark <post id>`
+- Remove a bookmark: `gator unbookmark <post id>`
+- List your bookmarks: `gator bookmarks`
+
+Bookmarks are kept even if you unfollow the post's feed.
+
 ## User Management
 
 - Log in as an existing user: `gator login <name>`
