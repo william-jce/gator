@@ -11,6 +11,12 @@ import (
 	"github.com/google/uuid"
 )
 
+type Bookmark struct {
+	UserID    uuid.UUID
+	PostID    uuid.UUID
+	CreatedAt time.Time
+}
+
 type Feed struct {
 	ID            uuid.UUID
 	CreatedAt     time.Time

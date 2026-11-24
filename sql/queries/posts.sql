@@ -20,3 +20,11 @@ INNER JOIN feed_follows
 WHERE feed_follows.user_id = $1
     ORDER BY published_at DESC NULLS FIRST
     LIMIT $2;
+
+-- name: GetPostByIDPrefixForUser :many
+SELECT posts.*
+FROM posts
+INNER JOIN feed_follows ON posts.feed_id = feed_follows.feed_id
+WHERE feed_follows.user_id = sqlc.arg(user_id)
+    AND posts.id::text LIKE sqlc.arg(id_prefix)::text || '%'
+LIMIT 4;

@@ -38,6 +38,9 @@ func main() {
 	appCommands.register("following", middlewareLoggedIn(handlerFollowing))
 	appCommands.register("unfollow", middlewareLoggedIn(handlerUnfollow))
 	appCommands.register("browse", middlewareLoggedIn(handlerBrowse))
+	appCommands.register("bookmark", middlewareLoggedIn(handlerBookmark))
+	appCommands.register("unbookmark", middlewareLoggedIn(handlerUnbookmark))
+	appCommands.register("bookmarks", middlewareLoggedIn((handlerBookmarks)))
 
 	userArgs := os.Args
 	if len(userArgs) < 2 {
