@@ -29,7 +29,7 @@ func handlerBrowse(s *state, cmd command, user database.User) error {
 	fmt.Println("Posts:")
 	for _, post := range posts {
 		fmt.Println("------")
-		fmt.Printf("%s\n\n", post.Title)
+		fmt.Printf("[%s] %s\n\n", shortID(post.ID), post.Title)
 		fmt.Printf("%s\n\n", post.Url)
 		fmt.Printf("%s\n\n", post.Description.String)
 	}
